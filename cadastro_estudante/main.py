@@ -81,6 +81,7 @@ def adicionar():
     frame_tabela_turma = Frame(frame_tabela, width=300, height=200, bg=co4)
     frame_tabela_turma.grid(row=0, column=2, pady=0, padx=10, sticky=NSEW)
 
+# Detalhes do Curso ---------------------------------------------------------------------------
 
     l_nome = Label(frame_detalhes, text="Nome do curso *", height=1, anchor=NW, font=('Ivy 10'), bg=co1, fg=co4)
     l_nome.place(x=4, y=10)
@@ -163,6 +164,28 @@ def adicionar():
     l_linha = Label(frame_tabela_linha, relief=GROOVE, text='h', width=1, height=100, anchor=NW, font=('Ivy 1'), bg=co1, fg=co0)
     l_linha.place(x=4, y=10)
 
+# Detalhes da Turma --------------------------------------------------------------
+
+    l_nome = Label(frame_detalhes, text="Nome da Turma *", height=1, anchor=NW, font=('Ivy 10'), bg=co1, fg=co4)
+    l_nome.place(x=404, y=10)
+    e_nome_turma = Entry(frame_detalhes, width=35, justify='left', relief='solid')
+    e_nome_turma.place(x=407, y=40)
+
+    l_turma = Label(frame_detalhes, text="Curso *", height=1, anchor=NW, font=('Ivy 10'), bg=co1, fg=co4)
+    l_turma.place(x=404, y=70)
+    
+    # Pegando os cursos
+    cursos = ['curso 1', 'curso 2']
+    curso = []
+
+    for i in cursos:
+        curso.append(i)
+    
+    c_curso = ttk.Combobox(frame_detalhes, width=20, font=('Ivy 8 bold'))
+    c_curso['values'] = (curso)
+    c_curso.place(x=407, y=100)
+
+    
 
 # Função para salvar
 def salvar():
