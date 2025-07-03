@@ -63,15 +63,105 @@ app_lg = ImageTk.PhotoImage(app_lg)
 app_logo = Label(frame_logo, image=app_lg, text="  Cadastro de Alunos", width=850, compound=LEFT, relief=RAISED, anchor=NW, font=('Ivy 15 bold'), bg=co6, fg=co1)
 app_logo.place(x=0, y=0)
 
-# funcção para cadastra alunos
+# funcção para cadastra Alunos
 def alunos():
     print('Aluno')
 
 
 
-# Função para adicionar cursos e turmas
+# Função para adicionar Cursos e turmas
 def adicionar():
-    print('Cursos e turmas')
+    # Criando frames para tabelas ----
+    frame_tabela_curso = Frame(frame_tabela, width=300, height=200, bg=co1)
+    frame_tabela_curso.grid(row=0, column=0, pady=0, padx=0, sticky=NSEW)
+
+    frame_tabela_linha = Frame(frame_tabela, width=30, height=200, bg=co1)
+    frame_tabela_linha.grid(row=0, column=1, pady=0, padx=10, sticky=NSEW)
+
+    frame_tabela_turma = Frame(frame_tabela, width=300, height=200, bg=co4)
+    frame_tabela_turma.grid(row=0, column=2, pady=0, padx=10, sticky=NSEW)
+
+
+    l_nome = Label(frame_detalhes, text="Nome do curso *", height=1, anchor=NW, font=('Ivy 10'), bg=co1, fg=co4)
+    l_nome.place(x=4, y=10)
+    e_nomecurso = Entry(frame_detalhes, width=35, justify='left', relief='solid')
+    e_nomecurso.place(x=7, y=40)
+
+    l_duracao = Label(frame_detalhes, text="Duração *", height=1, anchor=NW, font=('Ivy 10'), bg=co1, fg=co4)
+    l_duracao.place(x=4, y=70)
+    e_duracao = Entry(frame_detalhes, width=35, justify='left', relief='solid')
+    e_duracao.place(x=7, y=100)
+
+    l_preco = Label(frame_detalhes, text="Preço *", height=1, anchor=NW, font=('Ivy 10'), bg=co1, fg=co4)
+    l_preco.place(x=4, y=130)
+    e_preco = Entry(frame_detalhes, width=12, justify='left', relief='solid')
+    e_preco.place(x=7, y=160)
+
+    botao_carregar = Button(frame_detalhes, anchor=CENTER, text='Salvar'.upper(), width=10, overrelief=RIDGE, font=('Ivy 7 bold'), bg=co3, fg=co1)
+    botao_carregar.place(x=107, y=160)
+
+    botao_atualizar = Button(frame_detalhes, anchor=CENTER, text='Atualizar'.upper(), width=10, overrelief=RIDGE, font=('Ivy 7 bold'), bg=co6, fg=co1)
+    botao_atualizar.place(x=187, y=160)
+
+    botao_deletar = Button(frame_detalhes, anchor=CENTER, text='Deletar'.upper(), width=10, overrelief=RIDGE, font=('Ivy 7 bold'), bg=co7, fg=co1)
+    botao_deletar.place(x=267, y=160)
+
+    # Tabela Cursos
+    def mostrar_cursos():
+        app_nome = Label(frame_tabela_curso, text="Tabela de Cursos", height=1, pady=0, padx=0, relief="flat", anchor=NW, font=('Ivy 10 bold'), bg=co1, fg=co4)
+        app_nome.grid(row=0, column=0, padx=0, pady=10, sticky=NSEW)
+
+        # creating a treeview with dual scrollbars
+        list_header = ['ID', 'Curso', 'Duração', 'Preço']
+
+        df_list = []
+
+        global tree_curso
+
+        tree_curso = ttk.Treeview(frame_tabela_curso, selectmode="extended", columns=list_header, show='headings')
+        # vertical scrollbar
+        vsb = ttk.Scrollbar(frame_tabela_curso, orient="vertical", command=tree_curso.yview)
+        # horizontal scrollbar
+        hsb = ttk.Scrollbar(frame_tabela_curso, orient="horizontal", command=tree_curso.xview)
+
+        tree_curso.configure(yscrollcommand=vsb.set, xscrollcommand=hsb.set)
+        
+        tree_curso.grid(column=0, row=1, sticky='nsew')
+        vsb.grid(column=1, row=1, sticky='ns')
+        hsb.grid(column=0, row=2, sticky='ew')
+        frame_tabela_curso.grid_rowconfigure(0, weight=12)
+
+        hd=["nw","nw","e","e"]
+        h=[30,150,80,60]
+        n=0
+
+        for col in list_header:
+            tree_curso.heading(col, text=col.title(), anchor=NW)
+            # adjust the column's width to the header string
+            tree_curso.column(col, width=h[n], anchor=hd[n])
+
+            n+=1
+
+        for item in df_list:
+            tree_curso.insert('', 'end', values=item)
+
+    mostrar_cursos()
+
+
+    # linha separatoria ---------------------------------------------------------------------------------------
+
+    l_linha = Label(frame_detalhes, relief=GROOVE, text='h', width=1, height=100, anchor=NW, font=('Ivy 1'), bg=co0, fg=co0)
+    l_linha.place(x=374, y=10)
+    l_linha = Label(frame_detalhes, relief=GROOVE, text='h', width=1, height=100, anchor=NW, font=('Ivy 1'), bg=co1, fg=co0)
+    l_linha.place(x=372, y=10)
+
+
+    # linha separatoria Tabela'---------------------------------------------------------------------------------------
+
+    l_linha = Label(frame_tabela_linha, relief=GROOVE, text='h', width=1, height=100, anchor=NW, font=('Ivy 1'), bg=co0, fg=co0)
+    l_linha.place(x=6, y=10)
+    l_linha = Label(frame_tabela_linha, relief=GROOVE, text='h', width=1, height=100, anchor=NW, font=('Ivy 1'), bg=co1, fg=co0)
+    l_linha.place(x=4, y=10)
 
 
 # Função para salvar
