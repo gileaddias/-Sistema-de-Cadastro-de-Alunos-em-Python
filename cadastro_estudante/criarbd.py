@@ -18,14 +18,14 @@ except sqlite3.Error as e:
             cur.execute(""" CREATE TABLE IF NOT EXISTS cursos(
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 nome TEXT,
-                duracao Text,
+                duracao TEXT,
                 preco REAL
             )""")
 
-            print("Tabela cursos criada com Sucesso!")
+            print("Tabela Cursos criada com Sucesso!")
 
     except sqlite3.Error as e:
-        print("Erro ao criar a tabela cursos:", e)
+        print("Erro ao criar a tabela Cursos:", e)
 
 # Criando tabela de turmas
 

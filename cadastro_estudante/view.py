@@ -42,8 +42,6 @@ def atualizar_curso(i):
         cur.execute(query,i)
 
 
-l = ['Python','Duas Semanas', 50.0, 1]
-
 
 # Deletar os Cursos ( Delete D )
 def deletar_curso(i):
